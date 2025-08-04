@@ -1,0 +1,2 @@
+mkdir assets
+echo "# Assets folder placeholder" > assets/.keep
