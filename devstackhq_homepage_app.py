@@ -6,9 +6,6 @@ from components.footer import show_footer
 
 st.set_page_config(page_title="DevStackHQ", layout="wide")
 
-# ---- Navbar ----
-show_navbar()
-
 # ---- Safe image loader ----
 def load_image(filename):
     """Safely load an image from the assets folder."""
@@ -19,14 +16,23 @@ def load_image(filename):
         st.warning(f"⚠️ Missing image: {path}")
         return None
 
-# ---- Logo Section ----
-logo = load_image("logo.png")
-if logo:
-    st.image(logo, width=180)
-else:
-    st.markdown("<h2 style='text-align:center;'>DevStackHQ</h2>", unsafe_allow_html=True)
+# ---- Navbar ----
+show_navbar()
 
-# ---- Banner Section ----
+# ---- Top section with Logo (left) and optional spacing ----
+logo = load_image("logo.png")
+col1, col2 = st.columns([1, 6])  # logo left, rest empty for spacing
+with col1:
+    if logo:
+        st.image(logo, width=180)
+    else:
+        st.markdown("<h2>DevStackHQ</h2>", unsafe_allow_html=True)
+with col2:
+    pass  # empty column for spacing
+
+st.markdown("---")
+
+# ---- Banner Section (centered) ----
 banner = load_image("banner.png")
 if banner:
     st.image(banner, use_column_width=True)
