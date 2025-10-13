@@ -1,19 +1,17 @@
-# pages/Products.py
-
 import streamlit as st
 import webbrowser
 from components.navbar import show_navbar
 from components.footer import show_footer
 
-# Page Setup
+# Page setup
 st.set_page_config(page_title="DevStackHQ Products", layout="wide")
 
 # Navbar
 show_navbar()
 
+# Title
 st.title("🧩 Our Products")
-st.markdown("Explore all developer tools and SaaS products from **DevStackHQ Labs**.")
-
+st.markdown("Explore all developer tools and AI-powered SaaS platforms by **DevStackHQ Labs**.")
 st.markdown("---")
 
 # ----------------------------
@@ -29,39 +27,37 @@ col1, col2 = st.columns([1, 1])
 with col1:
     st.markdown("**Status:** ✅ Live")
     st.markdown("**Stack:** Streamlit • Python • Cloud Deployment")
-    st.markdown("**Hosted On:** advisiongenre cloud VM")
+    st.markdown("**Hosted On:** Streamlit Cloud")
     st.markdown("**Use Case:** Data & AI model management")
 with col2:
     if st.button("🚀 Launch Reposcope", key="launch_reposcope"):
-        webbrowser.open("https://cloud.advisiongenre.com/reposcope")
+        webbrowser.open("https://devstackhq.streamlit.app/reposcope")
 
 st.markdown("---")
 
 # ----------------------------
-# Product 2: AdVisionGenre
+# Product 2: AdVisionGenre Suite (with SearchPulse Chatbot)
 # ----------------------------
-st.subheader("🎯 AdVisionGenre – AI Content & Blogger Automation")
+st.subheader("🎯 AdVisionGenre Suite – AI Blogging & Chat Automation")
 st.write("""
-**AdVisionGenre** automates content creation, design, and blog publishing workflows.
-It connects to **Google Cloud API** to generate and post blogs automatically using a secure `token.json` authentication flow.
+**AdVisionGenre Suite** combines advanced AI-driven blogging automation, keyword discovery, and ad creative generation tools,  
+with an integrated **SearchPulse Chatbot** for smart content interaction and search assistance.
 """)
 
 col3, col4 = st.columns([1, 1])
 with col3:
-    st.markdown("**Status:** 🧱 In Development (Linode VM)**")
-    st.markdown("**Stack:** FastAPI • Streamlit • Google API Integration")
-    st.markdown("**Use Case:** Automated blogging, ad design, and content publishing")
+    st.markdown("**Status:** 🟢 Live (Hosted on Linode Cloud)**")
+    st.markdown("**Stack:** FastAPI • Streamlit • Google API • LLM Engine")
+    st.markdown("**Use Case:** Blogging automation, Keyword Finder, Chat assistant, Creative ad design")
+    st.markdown("**Hosted On:** Linode Cloud VM")
 with col4:
-    if st.button("🧩 Visit AdVisionGenre (Coming Soon)", key="visit_advision"):
-        st.info("AdVisionGenre is currently being set up on Linode VM.")
-        # Later this will point to your Linode app
-        # webbrowser.open("https://advisiongenre.com")
+    st.markdown("### 🌐 Access Tools")
+    if st.button("📰 Read Our Blogs", key="read_blogs"):
+        webbrowser.open("http://170.187.237.185/wp-json/wp/v2")
+    if st.button("🤖 Launch SearchPulse Chatbot", key="launch_searchpulse"):
+        webbrowser.open("http://170.187.237.185/chat")
 
 st.markdown("---")
-
-st.markdown("""
-🌐 *All products are part of the DevStackHQ ecosystem — building secure, modular tools for developers worldwide.*
-""")
 
 # Footer
 show_footer()
