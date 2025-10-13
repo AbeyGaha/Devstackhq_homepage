@@ -35,7 +35,7 @@ st.markdown("---")
 # ---- Banner Section (centered) ----
 banner = load_image("banner.png")
 if banner:
-    st.image(banner, use_column_width=True)
+    st.image(banner, use_container_width=True)
 
 # ---- Hero Text ----
 st.markdown("""
@@ -61,3 +61,4 @@ Reach us anytime at [contact@devstackhq.com](mailto:contact@devstackhq.com)
 
 # ---- Footer ----
 show_footer()
+
