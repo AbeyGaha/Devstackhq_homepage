@@ -3,15 +3,14 @@ import webbrowser
 from components.navbar import show_navbar
 from components.footer import show_footer
 
-# Page setup
+# Page Setup
 st.set_page_config(page_title="DevStackHQ Products", layout="wide")
 
 # Navbar
 show_navbar()
 
-# Title
 st.title("🧩 Our Products")
-st.markdown("Explore all developer tools and AI-powered SaaS platforms by **DevStackHQ Labs**.")
+st.markdown("Explore all developer tools and SaaS products from **DevStackHQ Labs**.")
 st.markdown("---")
 
 # ----------------------------
@@ -31,33 +30,41 @@ with col1:
     st.markdown("**Use Case:** Data & AI model management")
 with col2:
     if st.button("🚀 Launch Reposcope", key="launch_reposcope"):
-        webbrowser.open("https://devstackhq.streamlit.app/reposcope")
+        webbrowser.open("https://reposcope.streamlit.app")
 
 st.markdown("---")
 
 # ----------------------------
-# Product 2: AdVisionGenre Suite (with SearchPulse Chatbot)
+# Product 2: AdVisionGenre & SearchPulse
 # ----------------------------
-st.subheader("🎯 AdVisionGenre Suite – AI Blogging & Chat Automation")
+st.subheader("🎯 AdVisionGenre + SearchPulse – AI Content & Chatbot Suite")
 st.write("""
-**AdVisionGenre Suite** combines advanced AI-driven blogging automation, keyword discovery, and ad creative generation tools,  
-with an integrated **SearchPulse Chatbot** for smart content interaction and search assistance.
+**AdVisionGenre** automates content creation, ad design, and blog publishing using AI.  
+**SearchPulse** is an AI-powered chatbot that helps you explore blogs, keywords, and insights interactively.  
+Both products run securely on our Linode Cloud infrastructure.
 """)
 
 col3, col4 = st.columns([1, 1])
+
 with col3:
-    st.markdown("**Status:** 🟢 Live (Hosted on Linode Cloud)**")
-    st.markdown("**Stack:** FastAPI • Streamlit • Google API • LLM Engine")
-    st.markdown("**Use Case:** Blogging automation, Keyword Finder, Chat assistant, Creative ad design")
-    st.markdown("**Hosted On:** Linode Cloud VM")
+    st.markdown("**AdVisionGenre:** 🧱 Live on Linode")
+    st.markdown("**Stack:** FastAPI • Google Cloud API • Blogger Automation")
+    st.markdown("**Use Case:** Automated content creation and publishing")
+    if st.button("📰 Read Our Blogs", key="visit_advision"):
+        webbrowser.open("https://advisiongenre.devstackhq.com")
+
 with col4:
-    st.markdown("### 🌐 Access Tools")
-    if st.button("📰 Read Our Blogs", key="read_blogs"):
-        webbrowser.open("http://170.187.237.185/wp-json/wp/v2")
+    st.markdown("**SearchPulse Chatbot:** 💬 Live on Linode")
+    st.markdown("**Stack:** FastAPI • LLM Integration • Gradio UI")
+    st.markdown("**Use Case:** Conversational insights and search assistant")
     if st.button("🤖 Launch SearchPulse Chatbot", key="launch_searchpulse"):
-        webbrowser.open("http://170.187.237.185/chat")
+        webbrowser.open("https://searchpulse.devstackhq.com")
 
 st.markdown("---")
+
+st.markdown("""
+🌐 *All products are part of the DevStackHQ ecosystem — empowering developers with AI-driven tools.*  
+""")
 
 # Footer
 show_footer()
