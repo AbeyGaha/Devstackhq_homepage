@@ -58,7 +58,7 @@ with col4:
     st.markdown("**Stack:** FastAPI • LLM Integration • Gradio UI")
     st.markdown("**Use Case:** Conversational insights and search assistant")
     if st.button("🤖 Launch SearchPulse Chatbot", key="launch_searchpulse"):
-        webbrowser.open("https://searchpulse.devstackhq.com")
+        webbrowser.open("https://advisiongenre.devstackhq.com/chat/")
 
 st.markdown("---")
 
