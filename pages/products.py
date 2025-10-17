@@ -1,17 +1,34 @@
+import os
 import streamlit as st
 import webbrowser
 from components.navbar import show_navbar
 from components.footer import show_footer
 
-# Page Setup
+# ---- Page Setup ----
 st.set_page_config(page_title="DevStackHQ Products", layout="wide")
 
-# Navbar
+# ---- Navbar ----
 show_navbar()
 
 st.title("🧩 Our Products")
 st.markdown("Explore all developer tools and SaaS products from **DevStackHQ Labs**.")
 st.markdown("---")
+
+# ---- Detect Environment ----
+REPO_BASE = os.getenv("REPOSCOPE_BASE", "https://reposcope.streamlit.app")
+CUSTOM_DOMAIN = "https://reposcope.devstackhq.com"
+
+# Decide which domain to use
+def get_reposcope_url():
+    # If running under devstackhq.com, use proxy
+    try:
+        if "devstackhq.com" in st.request.url:
+            return CUSTOM_DOMAIN
+    except:
+        pass
+    return REPO_BASE
+
+reposcope_url = get_reposcope_url()
 
 # ----------------------------
 # Product 1: Reposcope
@@ -28,9 +45,10 @@ with col1:
     st.markdown("**Stack:** Streamlit • Python • Cloud Deployment")
     st.markdown("**Hosted On:** Streamlit Cloud")
     st.markdown("**Use Case:** Data & AI model management")
+
 with col2:
     if st.button("🚀 Launch Reposcope", key="launch_reposcope"):
-        webbrowser.open("https://reposcope.streamlit.app")
+        webbrowser.open(reposcope_url)
 
 st.markdown("---")
 
@@ -66,5 +84,5 @@ st.markdown("""
 🌐 *All products are part of the DevStackHQ ecosystem — empowering developers with AI-driven tools.*  
 """)
 
-# Footer
+# ---- Footer ----
 show_footer()
