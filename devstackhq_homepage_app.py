@@ -7,11 +7,6 @@ from components.footer import show_footer
 # ---- Page Config ----
 st.set_page_config(page_title="DevStackHQ", layout="wide", page_icon="💻")
 
-# ---- Detect environment (Render or local or proxy) ----
-REPO_BASE = os.getenv("REPOSCOPE_BASE", "https://reposcope.streamlit.app")
-CUSTOM_DOMAIN = "https://reposcope.devstackhq.com"
-current_base = CUSTOM_DOMAIN if "devstackhq.com" in st.request.url else REPO_BASE
-
 # ---- Safe Image Loader ----
 def load_image(filename, max_width=None):
     path = os.path.join("assets", filename)
@@ -38,10 +33,9 @@ with col1:
         st.markdown("<h2>DevStackHQ</h2>", unsafe_allow_html=True)
 
 with col2:
-    # Icons with dynamic base URLs
     st.markdown(f"""
     <div style='text-align:right; padding-top:20px;'>
-        <a href='{CUSTOM_DOMAIN}' target='_self'>
+        <a href='https://devstackhq.com' target='_self'>
             <img src='https://img.icons8.com/material-rounded/24/000000/home.png' style='margin-right:10px;'/>
         </a>
         <a href='https://devstackhq.com' target='_blank'>
