@@ -16,17 +16,8 @@ st.markdown("---")
 # ---- Detect Environment ----
 REPO_BASE = os.getenv("REPOSCOPE_BASE", "https://reposcope.streamlit.app")
 CUSTOM_DOMAIN = "https://reposcope.devstackhq.com"
-
-def get_reposcope_url():
-    """Decide which URL to use for Reposcope"""
-    try:
-        if "devstackhq.com" in st.request.url:
-            return CUSTOM_DOMAIN
-    except Exception:
-        pass
-    return REPO_BASE
-
-reposcope_url = get_reposcope_url()
+USE_CUSTOM = os.getenv("USE_CUSTOM_DOMAIN", "0") == "1"
+reposcope_url = CUSTOM_DOMAIN if USE_CUSTOM else REPO_BASE
 
 # ----------------------------
 # Product 1: Reposcope
@@ -45,7 +36,6 @@ with col1:
     st.markdown("**Use Case:** Data & AI model management")
 
 with col2:
-    # HTML link button for Streamlit Cloud / Render
     st.markdown(f"""
     <a href="{reposcope_url}" target="_blank">
         <button style="padding:10px 20px; font-size:16px;">🚀 Launch Reposcope</button>
