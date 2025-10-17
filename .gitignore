@@ -1,0 +1,38 @@
+# ------------------------
+# Python cache / temp files
+# ------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.DS_Store
+
+# ------------------------
+# Streamlit / Secrets
+# ------------------------
+.env
+st.secrets.toml
+
+# ------------------------
+# Logs / Temp / OS files
+# ------------------------
+*.log
+*.sqlite3
+*.db
+*.sqlite
+*.bak
+*.tmp
+*.zip
+
+# ------------------------
+# VSCode / IDE
+# ------------------------
+.vscode/
+.idea/
+
+# ------------------------
+# Keep assets committed
+# ------------------------
+# assets/  <-- intentionally not ignored, so your logos, banners, etc. are tracked
