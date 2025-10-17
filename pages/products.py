@@ -1,6 +1,5 @@
 import os
 import streamlit as st
-import webbrowser
 from components.navbar import show_navbar
 from components.footer import show_footer
 
@@ -18,13 +17,12 @@ st.markdown("---")
 REPO_BASE = os.getenv("REPOSCOPE_BASE", "https://reposcope.streamlit.app")
 CUSTOM_DOMAIN = "https://reposcope.devstackhq.com"
 
-# Decide which domain to use
 def get_reposcope_url():
-    # If running under devstackhq.com, use proxy
+    """Decide which URL to use for Reposcope"""
     try:
         if "devstackhq.com" in st.request.url:
             return CUSTOM_DOMAIN
-    except:
+    except Exception:
         pass
     return REPO_BASE
 
@@ -47,8 +45,12 @@ with col1:
     st.markdown("**Use Case:** Data & AI model management")
 
 with col2:
-    if st.button("🚀 Launch Reposcope", key="launch_reposcope"):
-        webbrowser.open(reposcope_url)
+    # HTML link button for Streamlit Cloud / Render
+    st.markdown(f"""
+    <a href="{reposcope_url}" target="_blank">
+        <button style="padding:10px 20px; font-size:16px;">🚀 Launch Reposcope</button>
+    </a>
+    """, unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -63,23 +65,27 @@ Both products run securely on our Linode Cloud infrastructure.
 """)
 
 col3, col4 = st.columns([1, 1])
-
 with col3:
     st.markdown("**AdVisionGenre:** 🧱 Live on Linode")
     st.markdown("**Stack:** FastAPI • Google Cloud API • Blogger Automation")
     st.markdown("**Use Case:** Automated content creation and publishing")
-    if st.button("📰 Read Our Blogs", key="visit_advision"):
-        webbrowser.open("https://advisiongenre.devstackhq.com")
+    st.markdown(f"""
+    <a href="https://advisiongenre.devstackhq.com" target="_blank">
+        <button style="padding:10px 20px; font-size:16px;">📰 Read Our Blogs</button>
+    </a>
+    """, unsafe_allow_html=True)
 
 with col4:
     st.markdown("**SearchPulse Chatbot:** 💬 Live on Linode")
     st.markdown("**Stack:** FastAPI • LLM Integration • Gradio UI")
     st.markdown("**Use Case:** Conversational insights and search assistant")
-    if st.button("🤖 Launch SearchPulse Chatbot", key="launch_searchpulse"):
-        webbrowser.open("https://advisiongenre.devstackhq.com/chat/")
+    st.markdown(f"""
+    <a href="https://advisiongenre.devstackhq.com/chat/" target="_blank">
+        <button style="padding:10px 20px; font-size:16px;">🤖 Launch SearchPulse Chatbot</button>
+    </a>
+    """, unsafe_allow_html=True)
 
 st.markdown("---")
-
 st.markdown("""
 🌐 *All products are part of the DevStackHQ ecosystem — empowering developers with AI-driven tools.*  
 """)
