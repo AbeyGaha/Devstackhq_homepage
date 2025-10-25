@@ -204,9 +204,30 @@ with col3:
     st.page_link("pages/Cancellations_Refund.py", label="🔄 Cancellations & Refund", icon="🔄", use_container_width=True)
     
 with col4:
-    st.page_link("pages/Contact_Us.py", label="📞 Contact Us", icon="📞", use_container_width=True)
+    st.page_link("pages/Privacy_Policy.py", label="🔒 Privacy Policy", icon="🔒", use_container_width=True)
 
 st.markdown("</div>", unsafe_allow_html=True)
+
+# ---- Additional Links Row ----
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.page_link("pages/Contact_Us.py", label="📞 Contact Us", icon="📞", use_container_width=True)
+    
+with col2:
+    st.page_link("pages/About.py", label="ℹ️ About Us", icon="ℹ️", use_container_width=True)
+    
+with col3:
+    st.page_link("pages/Products.py", label="🛍️ Products", icon="🛍️", use_container_width=True)
+    
+with col4:
+    st.markdown("""
+    <div style='text-align: center; padding: 10px;'>
+        <div style='font-size: 24px;'>📧</div>
+        <strong>Email Support</strong>
+        <p style='font-size: 12px;'>Active 24/7</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ---- Trust Indicators ----
 st.markdown("### 🔒 Trust & Security")
@@ -264,4 +285,5 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
+
 
