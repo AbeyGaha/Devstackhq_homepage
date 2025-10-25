@@ -1,45 +1,145 @@
 import os
 import streamlit as st
 from PIL import Image
+import base64
 
 # ---- Page Config ----
 st.set_page_config(page_title="DevStackHQ", layout="wide", page_icon="💻")
 
-# ---- Safe Image Loader ----
+# ---- Enhanced Image Loader with Multiple Paths ----
 def load_image(filename, max_width=None):
-    path = os.path.join("assets", filename)
-    if not os.path.exists(path):
-        st.warning(f"⚠️ Missing image: {path}")
+    # Try multiple possible paths
+    possible_paths = [
+        os.path.join("assets", filename),
+        os.path.join("./assets", filename),
+        os.path.join("pages/assets", filename),
+        os.path.join("../assets", filename),
+        filename  # Direct path
+    ]
+    
+    for path in possible_paths:
+        if os.path.exists(path):
+            try:
+                img = Image.open(path)
+                if max_width and img.width > max_width:
+                    ratio = max_width / img.width
+                    new_height = int(img.height * ratio)
+                    img = img.resize((max_width, new_height), Image.Resampling.LANCZOS)
+                return img
+            except Exception as e:
+                st.warning(f"Error loading image: {e}")
+                return None
+    
+    st.warning(f"⚠️ Image not found: {filename}")
+    st.info("Tried paths: " + ", ".join(possible_paths))
+    return None
+
+# ---- Convert Image to Base64 for Background ----
+def get_image_base64(image_path):
+    try:
+        with open(image_path, "rb") as img_file:
+            return base64.b64encode(img_file.read()).decode()
+    except:
         return None
-    img = Image.open(path)
-    if max_width and img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)))
-    return img
 
-# ---- Logo Display ----
-logo = load_image("logo.png", max_width=180)
-if logo:
-    st.image(logo, width=180)
+# ---- Try to load logo with multiple approaches ----
+logo = None
+logo_paths = [
+    "assets/logo.png",
+    "./assets/logo.png", 
+    "pages/assets/logo.png",
+    "../assets/logo.png",
+    "logo.png"
+]
 
-# ---- Navigation without Signup ----
-st.markdown(f"""
-<div style='text-align:right; padding-top:10px;'>
-    <a href='/' target='_self' style='margin-right:15px; text-decoration:none;'>🏠 Home</a>
-    <a href='/About' target='_self' style='margin-right:15px; text-decoration:none;'>ℹ️ About</a>
-    <a href='/Products' target='_self' style='margin-right:15px; text-decoration:none;'>🛍️ Products</a>
-    <a href='/Contact_Us' target='_self' style='margin-right:15px; text-decoration:none;'>📞 Contact</a>
-</div>
-""", unsafe_allow_html=True)
+for path in logo_paths:
+    if os.path.exists(path):
+        logo = load_image(path.replace("assets/", "").replace("./", "").replace("pages/", "").replace("../", ""))
+        if logo:
+            break
+
+# ---- Header Section with Logo ----
+col1, col2 = st.columns([1, 4])
+
+with col1:
+    if logo:
+        st.image(logo, width=180)
+    else:
+        # Fallback: Create a styled text logo
+        st.markdown("""
+        <div style='
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        '>
+        🚀<br>DevStackHQ
+        </div>
+        """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div style='text-align:right; padding-top:20px;'>
+        <a href='/' target='_self' style='margin-right:15px; text-decoration:none; font-weight:bold;'>🏠 Home</a>
+        <a href='/About' target='_self' style='margin-right:15px; text-decoration:none; font-weight:bold;'>ℹ️ About</a>
+        <a href='/Products' target='_self' style='margin-right:15px; text-decoration:none; font-weight:bold;'>🛍️ Products</a>
+        <a href='/Contact_Us' target='_self' style='text-decoration:none; font-weight:bold;'>📞 Contact</a>
+    </div>
+    """, unsafe_allow_html=True)
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# ---- Hero Section ----
-st.markdown("""
-<h1 style='text-align:center; color:#2C3E50;'>🚀 Welcome to DevStackHQ</h1>
-<h3 style='text-align:center; color:#34495E;'>Your Launchpad for Developer Productivity & Deployment</h3>
-""", unsafe_allow_html=True)
+# ---- Hero Section with Optional Background ----
+# Try to load background image
+background_image = None
+bg_paths = [
+    "assets/background.jpg",
+    "assets/banner.png", 
+    "assets/hero-bg.jpg",
+    "./assets/background.jpg"
+]
 
+bg_base64 = None
+for path in bg_paths:
+    if os.path.exists(path):
+        bg_base64 = get_image_base64(path)
+        if bg_base64:
+            break
+
+if bg_base64:
+    st.markdown(f"""
+    <div style='
+        background-image: url("data:image/jpeg;base64,{bg_base64}");
+        background-size: cover;
+        background-position: center;
+        padding: 60px 20px;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 30px;
+    '>
+        <h1 style='color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);'>🚀 Welcome to DevStackHQ</h1>
+        <h3 style='color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);'>Your Launchpad for Developer Productivity & Deployment</h3>
+    </div>
+    """, unsafe_allow_html=True)
+else:
+    # Fallback hero section without background image
+    st.markdown("""
+    <div style='
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 60px 20px;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 30px;
+    '>
+        <h1 style='color: white;'>🚀 Welcome to DevStackHQ</h1>
+        <h3 style='color: white;'>Your Launchpad for Developer Productivity & Deployment</h3>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ---- Main Content ----
 st.markdown("""
 <div style='text-align:center; font-size:18px; padding:1rem 2rem;'>
 We build cutting-edge tools for CI/CD, DevOps, and deployment so developers can
@@ -81,7 +181,7 @@ st.markdown("""
 <h3>Ready to Get Started?</h3>
 <p>Create your account to access premium features and make purchases</p>
 <a href='/Products' target='_self'>
-<button style='background-color:#FF4B4B; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;'>
+<button style='background-color:#FF4B4B; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-size:16px;'>
 Sign Up Now
 </button>
 </a>
@@ -126,3 +226,12 @@ st.markdown("""
 <p>Need help? <a href='mailto:support@devstackhq.com'>Contact our support team</a></p>
 </div>
 """, unsafe_allow_html=True)
+
+# ---- Debug Section (Remove in production) ----
+with st.expander("🔧 Debug Info"):
+    st.write("Current working directory:", os.getcwd())
+    st.write("Files in current directory:", os.listdir("."))
+    if os.path.exists("assets"):
+        st.write("Files in assets folder:", os.listdir("assets"))
+    else:
+        st.write("Assets folder not found!")
