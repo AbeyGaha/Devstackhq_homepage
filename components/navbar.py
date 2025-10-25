@@ -3,23 +3,35 @@ import streamlit as st
 def show_navbar():
     st.markdown("""
     <style>
-    .nav-container {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
         background-color: #f8f9fa;
-        padding: 0.8rem 2rem;
         border-bottom: 1px solid #dee2e6;
     }
-    .nav-container a {
-        margin-right: 20px;
+    .nav-links a {
+        margin: 0 15px;
         text-decoration: none;
-        color: #2C3E50;
-        font-weight: bold;
+        color: #495057;
+        font-weight: 500;
+    }
+    .nav-links a:hover {
+        color: #007bff;
     }
     </style>
-    <div class="nav-container">
-        <a href="/">Home</a>
-        <a href="/About">About</a>
-        <a href="/Product">Products</a>
-        <a href="/Contact">Contact</a>
-        <a href="/AdminTest">Admin</a>
+
+    <div class="navbar">
+        <div class="nav-logo">
+            <strong>DevStackHQ</strong>
+        </div>
+        <div class="nav-links">
+            <a href="/" target="_self">Home</a>
+            <a href="/Contact_Us" target="_self">Contact</a>
+            <a href="/Shipping_Policy" target="_self">Shipping</a>
+            <a href="/Terms_Conditions" target="_self">Terms</a>
+            <a href="/Cancellations_Refunds" target="_self">Refunds</a>
+        </div>
     </div>
     """, unsafe_allow_html=True)
