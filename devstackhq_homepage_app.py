@@ -1,8 +1,6 @@
 import os
 import streamlit as st
 from PIL import Image
-from components.navbar import show_navbar
-from components.footer import show_footer
 
 # ---- Page Config ----
 st.set_page_config(page_title="DevStackHQ", layout="wide", page_icon="💻")
@@ -19,40 +17,23 @@ def load_image(filename, max_width=None):
         img = img.resize((max_width, int(img.height * ratio)))
     return img
 
-# ---- Navbar ----
-show_navbar()
-
-# ---- Logo and Icons ----
+# ---- Logo Display ----
 logo = load_image("logo.png", max_width=180)
-col1, col2 = st.columns([1, 6])
+if logo:
+    st.image(logo, width=180)
 
-with col1:
-    if logo:
-        st.image(logo, width=180)
-    else:
-        st.markdown("<h2>DevStackHQ</h2>", unsafe_allow_html=True)
-
-with col2:
-    st.markdown(f"""
-    <div style='text-align:right; padding-top:20px;'>
-        <a href='https://devstackhq.com' target='_self'>
-            <img src='https://img.icons8.com/material-rounded/24/000000/home.png' style='margin-right:10px;'/>
-        </a>
-        <a href='https://devstackhq.com' target='_blank'>
-            <img src='https://img.icons8.com/material-rounded/24/000000/info.png' style='margin-right:10px;'/>
-        </a>
-        <a href='mailto:contact@devstackhq.com'>
-            <img src='https://img.icons8.com/material-rounded/24/000000/email.png'/>
-        </a>
-    </div>
-    """, unsafe_allow_html=True)
+# ---- Navigation without Signup ----
+st.markdown(f"""
+<div style='text-align:right; padding-top:10px;'>
+    <a href='#' target='_self' style='margin-right:15px; text-decoration:none;'>🏠 Home</a>
+    <a href='Contact_Us' target='_self' style='margin-right:15px; text-decoration:none;'>📞 Contact</a>
+    <a href='Shipping_Policy' target='_self' style='margin-right:15px; text-decoration:none;'>🚚 Shipping</a>
+    <a href='Terms_Conditions' target='_self' style='margin-right:15px; text-decoration:none;'>📄 Terms</a>
+    <a href='Cancellations_Refunds' target='_self' style='text-decoration:none;'>🔄 Refunds</a>
+</div>
+""", unsafe_allow_html=True)
 
 st.markdown("<hr>", unsafe_allow_html=True)
-
-# ---- Banner ----
-banner = load_image("banner.png", max_width=1200)
-if banner:
-    st.image(banner, use_container_width=True)
 
 # ---- Hero Section ----
 st.markdown("""
@@ -67,13 +48,68 @@ We build cutting-edge tools for CI/CD, DevOps, and deployment so developers can
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("<hr>", unsafe_allow_html=True)
-
-# ---- Contact ----
+# ---- Browse Products Section ----
+st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("### 🛍️ Browse Our Products")
 st.markdown("""
-### 📬 Contact Us
-Reach us anytime at [contact@devstackhq.com](mailto:contact@devstackhq.com)
+Explore our amazing products without any signup required! When you're ready to purchase, simply create an account.
 """)
 
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("#### 🔧 DevOps Tools")
+    st.markdown("- CI/CD Pipelines")
+    st.markdown("- Deployment Automation")
+    st.markdown("- Cloud Management")
+
+with col2:
+    st.markdown("#### 🚀 Developer Tools")
+    st.markdown("- Code Quality Checkers")
+    st.markdown("- API Management")
+    st.markdown("- Database Tools")
+
+with col3:
+    st.markdown("#### ☁️ Cloud Services")
+    st.markdown("- Serverless Solutions")
+    st.markdown("- Container Services")
+    st.markdown("- Monitoring Tools")
+
+# ---- Signup CTA ----
+st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("""
+<div style='text-align:center; background-color:#f0f2f6; padding:2rem; border-radius:10px;'>
+<h3>Ready to Get Started?</h3>
+<p>Create your account to access premium features and make purchases</p>
+<button style='background-color:#FF4B4B; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;'>
+Sign Up Now
+</button>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("<hr>", unsafe_allow_html=True)
+
+# ---- Quick Links ----
+st.markdown("### 🔗 Quick Links")
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.page_link("pages/Contact_Us.py", label="📞 Contact Us", icon="📞")
+    
+with col2:
+    st.page_link("pages/Shipping_Policy.py", label="🚚 Shipping Policy", icon="🚚")
+    
+with col3:
+    st.page_link("pages/Terms_Conditions.py", label="📄 Terms & Conditions", icon="📄")
+    
+with col4:
+    st.page_link("pages/Cancellations_Refunds.py", label="🔄 Refunds", icon="🔄")
+
 # ---- Footer ----
-show_footer()
+st.markdown("---")
+st.markdown("""
+<div style='text-align:center; color:#666;'>
+<p>© 2024 DevStackHQ. All rights reserved.</p>
+<p>Need help? <a href='Contact_Us'>Contact our support team</a></p>
+</div>
+""", unsafe_allow_html=True)
