@@ -28,10 +28,9 @@ def show_navbar():
         </div>
         <div class="nav-links">
             <a href="/" target="_self">Home</a>
+            <a href="/About" target="_self">About</a>
+            <a href="/Products" target="_self">Products</a>
             <a href="/Contact_Us" target="_self">Contact</a>
-            <a href="/Shipping_Policy" target="_self">Shipping</a>
-            <a href="/Terms_Conditions" target="_self">Terms</a>
-            <a href="/Cancellations_Refunds" target="_self">Refunds</a>
         </div>
     </div>
     """, unsafe_allow_html=True)
