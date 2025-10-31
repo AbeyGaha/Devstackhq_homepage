@@ -53,7 +53,22 @@ st.write("""
 **SearchPulse** is an AI-powered chatbot that helps you explore blogs, keywords, and insights interactively.  
 Both products run securely on our Linode Cloud infrastructure.
 """)
+st.markdown("""
+<a href="https://advisiongenre.devstackhq.com/chat/" target="_blank">
+    <button style="padding:12px 24px; font-size:16px; background:#ff6b35; color:white; border:none; border-radius:5px;">
+        🚀 Try Free Demo Chatbot
+    </button>
+</a>
+""", unsafe_allow_html=True)
 
+st.markdown("""
+### 🆓 Free Demo Features:
+- 4 messages conversation memory
+- File upload (PDF, images, text) - max 2048 KB  
+- Basic creative tools
+- Download created files
+- Full bot code access for developers
+""")
 col3, col4 = st.columns([1, 1])
 with col3:
     st.markdown("**AdVisionGenre:** 🧱 Live on Linode")
