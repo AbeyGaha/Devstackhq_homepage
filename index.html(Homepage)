@@ -1,290 +1,484 @@
-import os
-import streamlit as st
-from PIL import Image
-import base64
-
-# ---- Page Config ----
-st.set_page_config(page_title="DevStackHQ", layout="wide", page_icon="💻")
-
-# ---- Enhanced Image Loader ----
-def load_image(filename, max_width=None):
-    possible_paths = [
-        os.path.join("assets", filename),
-        os.path.join("./assets", filename),
-        filename
-    ]
-    
-    for path in possible_paths:
-        if os.path.exists(path):
-            try:
-                img = Image.open(path)
-                if max_width and img.width > max_width:
-                    ratio = max_width / img.width
-                    new_height = int(img.height * ratio)
-                    img = img.resize((max_width, new_height), Image.Resampling.LANCZOS)
-                return img
-            except Exception as e:
-                return None
-    return None
-
-# ---- Header with Beautiful Text Logo ----
-st.markdown("""
-<div style='
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    margin-bottom: 20px;
-'>
-    <h1 style='margin:0; font-size: 36px;'>🚀 DevStackHQ</h1>
-    <p style='margin:0; font-size: 18px; opacity: 0.9;'>Developer Productivity & Deployment Solutions</p>
-</div>
-""", unsafe_allow_html=True)
-
-# ---- Navigation Menu ----
-st.markdown("""
-<div style='
-    text-align: center;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    margin-bottom: 20px;
-'>
-    <a href='/' target='_self' style='margin: 0 20px; text-decoration: none; font-weight: bold; color: #333; font-size: 16px;'>🏠 Home</a>
-    <a href='/About' target='_self' style='margin: 0 20px; text-decoration: none; font-weight: bold; color: #333; font-size: 16px;'>ℹ️ About</a>
-    <a href='/Products' target='_self' style='margin: 0 20px; text-decoration: none; font-weight: bold; color: #333; font-size: 16px;'>🛍️ Products</a>
-    <a href='/Contact_Us' target='_self' style='margin: 0 20px; text-decoration: none; font-weight: bold; color: #333; font-size: 16px;'>📞 Contact</a>
-</div>
-""", unsafe_allow_html=True)
-
-# ---- Hero Section (Clean - No Background Image Text) ----
-st.markdown("""
-<div style='
-    background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 100%);
-    padding: 80px 20px;
-    border-radius: 15px;
-    text-align: center;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-'>
-    <h1 style='color: white; margin-bottom: 20px; font-size: 48px;'>Welcome to DevStackHQ</h1>
-    <h3 style='color: white; margin-bottom: 30px; font-size: 24px;'>Your Launchpad for Developer Productivity & Deployment</h3>
-    <p style='color: white; font-size: 18px; max-width: 800px; margin: 0 auto;'>
-    We build cutting-edge tools for CI/CD, DevOps, and deployment so developers can 
-    <strong>focus on building</strong> instead of managing infrastructure.
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
-# ---- Main Features Section ----
-st.markdown("### 🎯 Why Choose DevStackHQ?")
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.markdown("""
-    <div style='padding: 20px; background-color: #f8f9fa; border-radius: 10px; height: 200px;'>
-        <h4>🚀 Fast Deployment</h4>
-        <p>Deploy your applications in minutes with our automated CI/CD pipelines</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col2:
-    st.markdown("""
-    <div style='padding: 20px; background-color: #f8f9fa; border-radius: 10px; height: 200px;'>
-        <h4>🔧 Developer First</h4>
-        <p>Tools designed by developers for developers. Intuitive and powerful.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col3:
-    st.markdown("""
-    <div style='padding: 20px; background-color: #f8f9fa; border-radius: 10px; height: 200px;'>
-        <h4>☁️ Cloud Native</h4>
-        <p>Built for modern cloud infrastructure with scalability in mind.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# ---- Browse Products Section ----
-st.markdown("<br>", unsafe_allow_html=True)
-st.markdown("### 🛍️ Browse Our Products")
-st.markdown("""
-Explore our amazing products without any signup required! When you're ready to purchase, simply create an account.
-""")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.markdown("""
-    <div style='padding: 15px; border-left: 4px solid #667eea;'>
-        <h4>🔧 DevOps Tools</h4>
-        <ul style='padding-left: 20px;'>
-            <li>CI/CD Pipelines</li>
-            <li>Deployment Automation</li>
-            <li>Cloud Management</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col2:
-    st.markdown("""
-    <div style='padding: 15px; border-left: 4px solid #FF4B4B;'>
-        <h4>🚀 Developer Tools</h4>
-        <ul style='padding-left: 20px;'>
-            <li>Code Quality Checkers</li>
-            <li>API Management</li>
-            <li>Database Tools</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col3:
-    st.markdown("""
-    <div style='padding: 15px; border-left: 4px solid #28a745;'>
-        <h4>☁️ Cloud Services</h4>
-        <ul style='padding-left: 20px;'>
-            <li>Serverless Solutions</li>
-            <li>Container Services</li>
-            <li>Monitoring Tools</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
-
-# ---- Signup CTA ----
-st.markdown("<br>", unsafe_allow_html=True)
-st.markdown("""
-<div style='
-    text-align:center; 
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 3rem;
-    border-radius: 15px;
-    color: white;
-    margin: 30px 0;
-'>
-    <h2 style='color: white;'>Ready to Get Started?</h2>
-    <p style='font-size: 18px; margin-bottom: 25px;'>Create your account to access premium features and make purchases</p>
-    <a href='/Products' target='_self'>
-        <button style='
-            background-color: #FF4B4B; 
-            color: white; 
-            border: none; 
-            padding: 15px 30px; 
-            border-radius: 25px; 
-            cursor: pointer; 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevStackHQ - Developer Productivity & Deployment Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #FF4B4B;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .main-header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        
+        .main-header p {
+            margin: 0;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        .navbar {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--light);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .navbar a {
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: var(--dark);
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 100%);
+            padding: 80px 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            height: 200px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h4 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        /* Products Section */
+        .products-section {
+            margin: 3rem 0;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .product-item {
+            padding: 15px;
+            border-left: 4px solid var(--primary);
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .product-item:nth-child(2) {
+            border-left-color: var(--accent);
+        }
+        
+        .product-item:nth-child(3) {
+            border-left-color: #28a745;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            color: white;
+            margin: 30px 0;
+        }
+        
+        .cta-button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
             font-size: 18px;
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        '>
-        🚀 Sign Up Now
-        </button>
-    </a>
-</div>
-""", unsafe_allow_html=True)
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: #e53c3c;
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Policies Grid */
+        .policies-section {
+            margin: 3rem 0;
+        }
+        
+        .policies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .policy-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .policy-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .policy-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Trust Indicators */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .trust-item {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .trust-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+            margin-top: 3rem;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .footer-links {
+            margin: 15px 0;
+        }
+        
+        .footer-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero h3 {
+                font-size: 20px;
+            }
+            
+            .navbar a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="main-header">
+            <h1>🚀 DevStackHQ</h1>
+            <p>Developer Productivity & Deployment Solutions</p>
+        </div>
 
-# ---- Razorpay Required Pages Links ----
-st.markdown("### 📋 Company Policies & Information")
-st.markdown("""
-<div style='
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px 0;
-'>
-""", unsafe_allow_html=True)
+        <!-- Navigation -->
+        <nav class="navbar">
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About</a>
+            <a href="products.html">🛍️ Products</a>
+            <a href="contact.html">📞 Contact</a>
+        </nav>
 
-col1, col2, col3, col4 = st.columns(4)
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Welcome to DevStackHQ</h1>
+            <h3>Your Launchpad for Developer Productivity & Deployment</h3>
+            <p>
+                We build cutting-edge tools for CI/CD, DevOps, and deployment so developers can 
+                <strong>focus on building</strong> instead of managing infrastructure.
+            </p>
+        </section>
 
-with col1:
-    st.page_link("pages/Shipping_Policy.py", label="🚚 Shipping Policy", icon="🚚", use_container_width=True)
-    
-with col2:
-    st.page_link("pages/Terms_Conditions.py", label="📄 Terms & Conditions", icon="📄", use_container_width=True)
-    
-with col3:
-    st.page_link("pages/Cancellations_Refund.py", label="🔄 Cancellations & Refund", icon="🔄", use_container_width=True)
-    
-with col4:
-    st.page_link("pages/Privacy_Policy.py", label="🔒 Privacy Policy", icon="🔒", use_container_width=True)
+        <!-- Main Features -->
+        <h2 style="text-align: center; margin-bottom: 2rem;">🎯 Why Choose DevStackHQ?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>🚀 Fast Deployment</h4>
+                <p>Deploy your applications in minutes with our automated CI/CD pipelines</p>
+            </div>
+            <div class="feature-card">
+                <h4>🔧 Developer First</h4>
+                <p>Tools designed by developers for developers. Intuitive and powerful.</p>
+            </div>
+            <div class="feature-card">
+                <h4>☁️ Cloud Native</h4>
+                <p>Built for modern cloud infrastructure with scalability in mind.</p>
+            </div>
+        </div>
 
-st.markdown("</div>", unsafe_allow_html=True)
+        <!-- Products Section -->
+        <section class="products-section">
+            <h2 style="text-align: center; margin-bottom: 1rem;">🛍️ Browse Our Products</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">
+                Explore our amazing products without any signup required! When you're ready to purchase, simply create an account.
+            </p>
+            
+            <div class="products-grid">
+                <div class="product-item">
+                    <h4>🔧 DevOps Tools</h4>
+                    <ul>
+                        <li>CI/CD Pipelines</li>
+                        <li>Deployment Automation</li>
+                        <li>Cloud Management</li>
+                    </ul>
+                </div>
+                <div class="product-item">
+                    <h4>🚀 Developer Tools</h4>
+                    <ul>
+                        <li>Code Quality Checkers</li>
+                        <li>API Management</li>
+                        <li>Database Tools</li>
+                    </ul>
+                </div>
+                <div class="product-item">
+                    <h4>☁️ Cloud Services</h4>
+                    <ul>
+                        <li>Serverless Solutions</li>
+                        <li>Container Services</li>
+                        <li>Monitoring Tools</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-# ---- Additional Links Row ----
-col1, col2, col3, col4 = st.columns(4)
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Get Started?</h2>
+            <p style="font-size: 18px; margin-bottom: 25px;">Create your account to access premium features and make purchases</p>
+            <a href="products.html" class="cta-button">🚀 Sign Up Now</a>
+        </section>
 
-with col1:
-    st.page_link("pages/Contact_Us.py", label="📞 Contact Us", icon="📞", use_container_width=True)
-    
-with col2:
-    st.page_link("pages/About.py", label="ℹ️ About Us", icon="ℹ️", use_container_width=True)
-    
-with col3:
-    st.page_link("pages/Products.py", label="🛍️ Products", icon="🛍️", use_container_width=True)
-    
-with col4:
-    st.markdown("""
-    <div style='text-align: center; padding: 10px;'>
-        <div style='font-size: 24px;'>📧</div>
-        <strong>Email Support</strong>
-        <p style='font-size: 12px;'>Active 24/7</p>
+        <!-- Policies Section -->
+        <section class="policies-section">
+            <h2 style="text-align: center; margin-bottom: 1rem;">📋 Company Policies & Information</h2>
+            <div class="policies-grid">
+                <a href="shipping-policy.html" class="policy-item">
+                    <div class="policy-icon">🚚</div>
+                    <h4>Shipping Policy</h4>
+                    <p>Digital products delivery information</p>
+                </a>
+                <a href="terms-conditions.html" class="policy-item">
+                    <div class="policy-icon">📄</div>
+                    <h4>Terms & Conditions</h4>
+                    <p>Service terms and usage policies</p>
+                </a>
+                <a href="cancellations-refund.html" class="policy-item">
+                    <div class="policy-icon">🔄</div>
+                    <h4>Cancellations & Refund</h4>
+                    <p>Refund and cancellation policies</p>
+                </a>
+                <a href="privacy-policy.html" class="policy-item">
+                    <div class="policy-icon">🔒</div>
+                    <h4>Privacy Policy</h4>
+                    <p>Data protection and privacy information</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Additional Links -->
+        <section style="margin: 3rem 0;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <a href="contact.html" class="policy-item">
+                    <div class="policy-icon">📞</div>
+                    <h4>Contact Us</h4>
+                    <p>Get in touch with our team</p>
+                </a>
+                <a href="about.html" class="policy-item">
+                    <div class="policy-icon">ℹ️</div>
+                    <h4>About Us</h4>
+                    <p>Learn about DevStackHQ</p>
+                </a>
+                <a href="products.html" class="policy-item">
+                    <div class="policy-icon">🛍️</div>
+                    <h4>Products</h4>
+                    <p>Explore our product suite</p>
+                </a>
+                <div class="policy-item">
+                    <div class="policy-icon">📧</div>
+                    <h4>Email Support</h4>
+                    <p>Active 24/7</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Indicators -->
+        <h3 style="text-align: center; margin: 3rem 0 1rem 0;">🔒 Trust & Security</h3>
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="trust-icon">✅</div>
+                <strong>SSL Encrypted</strong>
+                <p style="font-size: 12px;">Secure transactions</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">🛡️</div>
+                <strong>Razorpay Verified</strong>
+                <p style="font-size: 12px;">Trusted payments</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">🌐</div>
+                <strong>24/7 Support</strong>
+                <p style="font-size: 12px;">Always available</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">⚡</div>
+                <strong>Instant Delivery</strong>
+                <p style="font-size: 12px;">Digital products</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p style="font-size: 16px; font-weight: bold;">© 2025 DevStackHQ. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="shipping-policy.html">Shipping Policy</a> | 
+                <a href="terms-conditions.html">Terms & Conditions</a> | 
+                <a href="cancellations-refund.html">Cancellations & Refund</a> | 
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <p style="font-size: 14px; margin-top: 1rem;">
+                Need help? <a href="mailto:support@devstackhq.com" style="color: var(--accent);">Contact our support team</a>
+            </p>
+        </footer>
     </div>
-    """, unsafe_allow_html=True)
 
-# ---- Trust Indicators ----
-st.markdown("### 🔒 Trust & Security")
-trust_col1, trust_col2, trust_col3, trust_col4 = st.columns(4)
-
-with trust_col1:
-    st.markdown("""
-    <div style='text-align: center; padding: 15px;'>
-        <div style='font-size: 30px;'>✅</div>
-        <strong>SSL Encrypted</strong>
-        <p style='font-size: 12px;'>Secure transactions</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with trust_col2:
-    st.markdown("""
-    <div style='text-align: center; padding: 15px;'>
-        <div style='font-size: 30px;'>🛡️</div>
-        <strong>Razorpay Verified</strong>
-        <p style='font-size: 12px;'>Trusted payments</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with trust_col3:
-    st.markdown("""
-    <div style='text-align: center; padding: 15px;'>
-        <div style='font-size: 30px;'>🌐</div>
-        <strong>24/7 Support</strong>
-        <p style='font-size: 12px;'>Always available</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with trust_col4:
-    st.markdown("""
-    <div style='text-align: center; padding: 15px;'>
-        <div style='font-size: 30px;'>⚡</div>
-        <strong>Instant Delivery</strong>
-        <p style='font-size: 12px;'>Digital products</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# ---- Footer with All Required Links ----
-st.markdown("---")
-st.markdown("""
-<div style='text-align:center; color:#666; padding: 20px;'>
-    <p style='font-size: 16px; font-weight: bold;'>© 2025 DevStackHQ. All rights reserved.</p>
-    <div style='margin: 15px 0;'>
-        <a href='/Shipping_Policy' style='margin: 0 15px; text-decoration:none; color:#666; font-size: 14px;'>Shipping Policy</a> | 
-        <a href='/Terms_Conditions' style='margin: 0 15px; text-decoration:none; color:#666; font-size: 14px;'>Terms & Conditions</a> | 
-        <a href='/Cancellations_Refund' style='margin: 0 15px; text-decoration:none; color:#666; font-size: 14px;'>Cancellations & Refund</a> | 
-        <a href='/Contact_Us' style='margin: 0 15px; text-decoration:none; color:#666; font-size: 14px;'>Contact Us</a>
-    </div>
-    <p style='font-size: 14px;'>
-        Need help? <a href='mailto:support@devstackhq.com' style='color: #FF4B4B;'>Contact our support team</a>
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
-
-
+    <script>
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
