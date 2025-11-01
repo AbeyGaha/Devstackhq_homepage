@@ -10,10 +10,11 @@ __pycache__/
 *.DS_Store
 
 # ------------------------
-# Streamlit / Secrets
+# Environment files
 # ------------------------
 .env
-st.secrets.toml
+.env.local
+.env.production
 
 # ------------------------
 # Logs / Temp / OS files
@@ -31,8 +32,22 @@ st.secrets.toml
 # ------------------------
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# ------------------------
+# Node modules (if any)
+# ------------------------
+node_modules/
+npm-debug.log*
+
+# ------------------------
+# Build directories
+# ------------------------
+dist/
+build/
 
 # ------------------------
 # Keep assets committed
 # ------------------------
-# assets/  <-- intentionally not ignored, so your logos, banners, etc. are tracked
+# assets/  <-- intentionally not ignored
