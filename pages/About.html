@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - DevStackHQ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #FF4B4B;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .main-header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--light);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .navbar a {
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: var(--dark);
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            color: var(--primary);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li::before {
+            content: "🎯 ";
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+            margin-top: 3rem;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .footer-links {
+            margin: 15px 0;
+        }
+        
+        .footer-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="main-header">
+            <h1>📖 About DevStackHQ</h1>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About</a>
+            <a href="products.html">🛍️ Products</a>
+            <a href="contact.html">📞 Contact</a>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="content-section">
+            <p><strong>DevStackHQ</strong> is your all-in-one ecosystem for cutting-edge developer tools.<br>
+            We accelerate productivity by providing seamless solutions for CI/CD, deployment, monitoring, and AI-assisted development workflows.<br>
+            Our mission: <strong>Empower developers to focus on building, not managing infrastructure.</strong></p>
+        </div>
+
+        <!-- What We Offer -->
+        <div class="content-section">
+            <h2 class="section-title">🎯 What We Offer</h2>
+            <ul class="feature-list">
+                <li><strong>Developer-centric Tools:</strong> From repository management to AI-driven insights, everything built with developers in mind.</li>
+                <li><strong>Secure & Scalable:</strong> Our micro SaaS applications are designed to scale while maintaining high security standards.</li>
+                <li><strong>Test & Experiment:</strong> On-demand environments and sandboxes for testing and deploying your tools.</li>
+                <li><strong>Cross-platform Integration:</strong> Works seamlessly across cloud, local, and hybrid setups.</li>
+                <li><strong>Analytics & Insights:</strong> Actionable metrics and visualizations to understand your workflows and productivity.</li>
+                <li><strong>AI Assistance:</strong> Integrated AI-powered suggestions, automation, and code insights.</li>
+            </ul>
+        </div>
+
+        <!-- Our Philosophy -->
+        <div class="content-section">
+            <h2 class="section-title">💡 Our Philosophy</h2>
+            <p>We believe in <strong>developer-first design</strong>:<br>
+            Tools should remove friction, not add it. Every feature, every workflow, every integration is carefully crafted to make developers more efficient and creative.</p>
+            <p style="margin-top: 1rem;"><strong>Built with ❤️ by developers, for developers.</strong></p>
+        </div>
+
+        <!-- Team Section -->
+        <div class="content-section">
+            <h2 class="section-title">👩‍💻 Meet the Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>Abhinav Chauhan</h3>
+                    <p><strong>Founder & Lead Developer</strong></p>
+                </div>
+                <div class="team-member">
+                    <h3>AI & Cloud Experts</h3>
+                    <p><strong>Building the DevStackHQ platform</strong></p>
+                </div>
+                <div class="team-member">
+                    <h3>Community Contributors</h3>
+                    <p><strong>Feedback-driven improvements from our user base</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p style="font-size: 16px; font-weight: bold;">© 2025 DevStackHQ. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="shipping-policy.html">Shipping Policy</a> | 
+                <a href="terms-conditions.html">Terms & Conditions</a> | 
+                <a href="cancellations-refund.html">Cancellations & Refund</a> | 
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
