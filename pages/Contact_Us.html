@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - DevStackHQ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #FF4B4B;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .main-header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--light);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .navbar a {
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: var(--dark);
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            color: var(--primary);
+        }
+        
+        /* Content Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .content-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 8px;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: #e53c3c;
+        }
+        
+        /* Business Hours */
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .hour-item {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+            margin-top: 3rem;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .footer-links {
+            margin: 15px 0;
+        }
+        
+        .footer-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="main-header">
+            <h1>📞 Contact Us</h1>
+            <p>We'd love to hear from you!</p>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About</a>
+            <a href="products.html">🛍️ Products</a>
+            <a href="contact.html">📞 Contact</a>
+        </nav>
+
+        <div class="content-grid">
+            <!-- Contact Information -->
+            <div class="content-section">
+                <h2 class="section-title">📧 Active Email Addresses</h2>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <strong>Technical Support:</strong> support@devstackhq.com<br>
+                        <small>Available 24/7 for technical issues</small>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <strong>Sales & Business:</strong> sales@devstackhq.com<br>
+                        <small>For product inquiries and partnerships</small>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <strong>General Inquiries:</strong> contact@devstackhq.com<br>
+                        <small>For general questions and information</small>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <strong>Privacy & Legal:</strong> privacy@devstackhq.com<br>
+                        <small>For data protection and privacy concerns</small>
+                    </div>
+                </div>
+
+                <h2 class="section-title">📞 Phone Support</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <strong>Customer Support:</strong> +91-9873171180
+                    </div>
+                    <div class="contact-item">
+                        <strong>Business Inquiries:</strong> +91-9540342222
+                    </div>
+                </div>
+
+                <h2 class="section-title">🏢 Office Address</h2>
+                <div class="contact-item">
+                    DevStackHQ Solutions<br>
+                    SD-121, Sector-45, Noida<br>
+                    Gautam Budh Nagar, UP-201303<br>
+                    India
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="content-section">
+                <h2 class="section-title">📝 Contact Form</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                            <option value="Technical Support">Technical Support</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Partnership">Partnership</option>
+                            <option value="Privacy Concern">Privacy Concern</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                <div id="formMessage" style="margin-top: 1rem;"></div>
+            </div>
+        </div>
+
+        <!-- Business Hours -->
+        <div class="content-section">
+            <h2 class="section-title">🕒 Business Hours</h2>
+            <div class="hours-grid">
+                <div class="hour-item">
+                    <strong>Monday - Friday</strong><br>
+                    9:00 AM - 6:00 PM IST
+                </div>
+                <div class="hour-item">
+                    <strong>Saturday</strong><br>
+                    10:00 AM - 2:00 PM IST
+                </div>
+                <div class="hour-item">
+                    <strong>Sunday</strong><br>
+                    Closed
+                </div>
+            </div>
+        </div>
+
+        <!-- Emergency Support -->
+        <div class="content-section">
+            <h2 class="section-title">⚡ Emergency Technical Support</h2>
+            <p>For critical system issues, our technical support is available 24/7 via:</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Email:</strong> support@devstackhq.com
+                </div>
+                <div class="contact-item">
+                    <strong>Phone:</strong> +91-9873171180 (24/7)
+                </div>
+            </div>
+        </div>
+
+        <!-- Response Time -->
+        <div class="content-section">
+            <h2 class="section-title">🔒 Response Time Commitment</h2>
+            <div class="hours-grid">
+                <div class="hour-item">
+                    <strong>Technical Support</strong><br>
+                    Within 2 hours (24/7)
+                </div>
+                <div class="hour-item">
+                    <strong>Sales Inquiries</strong><br>
+                    Within 4 business hours
+                </div>
+                <div class="hour-item">
+                    <strong>General Questions</strong><br>
+                    Within 24 hours
+                </div>
+                <div class="hour-item">
+                    <strong>Privacy Concerns</strong><br>
+                    Within 48 hours
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p style="font-size: 16px; font-weight: bold;">© 2025 DevStackHQ. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="shipping-policy.html">Shipping Policy</a> | 
+                <a href="terms-conditions.html">Terms & Conditions</a> | 
+                <a href="cancellations-refund.html">Cancellations & Refund</a> | 
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                document.getElementById('formMessage').innerHTML = 
+                    '<div style="color: green; padding: 1rem; background: #d4edda; border-radius: 5px;">✅ Thank you! Your message has been sent successfully. We\'ll respond within 24 hours.</div>';
+                document.getElementById('contactForm').reset();
+            } else {
+                document.getElementById('formMessage').innerHTML = 
+                    '<div style="color: red; padding: 1rem; background: #f8d7da; border-radius: 5px;">❌ Please fill all required fields.</div>';
+            }
+        });
+    </script>
+</body>
+</html>
