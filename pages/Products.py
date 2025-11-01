@@ -29,31 +29,8 @@ st.markdown("""
         border-radius: 8px;
         border-left: 4px solid #ff6b35;
     }
-    .btn-primary {
-        background: linear-gradient(45deg, #FF6B35, #FF8E53);
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: bold;
-        text-decoration: none;
-        display: inline-block;
-        margin: 5px 0;
-    }
-    .btn-primary:hover {
-        background: linear-gradient(45deg, #E55A2B, #FF7B42);
-        color: white;
-        text-decoration: none;
-    }
-    .btn-secondary {
-        background: linear-gradient(45deg, #667eea, #764ba2);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-weight: bold;
-        text-decoration: none;
-        display: inline-block;
+    .streamlit-button {
+        width: 100%;
         margin: 5px 0;
     }
 </style>
@@ -86,8 +63,8 @@ with col1:
     st.markdown("**Use Case:** Data & AI model management")
 
 with col2:
-    # Using Streamlit's native link button
-    st.markdown(f"[🚀 Launch Reposcope]({reposcope_url})", unsafe_allow_html=True)
+    # Use Streamlit's markdown link (works better in Streamlit Cloud)
+    st.markdown(f"[🚀 Launch Reposcope]({reposcope_url})")
 
 st.markdown("---")
 
@@ -101,22 +78,9 @@ st.write("""
 Both products run securely on our Linode Cloud infrastructure.
 """)
 
-# Main Chatbot Button - More prominent
-st.markdown(f"""
-<a href="https://advisiongenre.devstackhq.com/chat/" target="_blank" style="text-decoration: none;">
-    <button style="background: linear-gradient(45deg, #FF6B35, #FF8E53); 
-                  color: white; 
-                  border: none; 
-                  padding: 15px 30px; 
-                  font-size: 18px; 
-                  border-radius: 10px; 
-                  cursor: pointer; 
-                  font-weight: bold;
-                  margin: 10px 0;">
-        🚀 Try Free Demo Chatbot
-    </button>
-</a>
-""", unsafe_allow_html=True)
+# Main Chatbot Button - Using Streamlit's native components
+st.markdown("### 🤖 Try Our Free Demo Chatbot")
+st.markdown(f"[🚀 Try Free Demo Chatbot](https://advisiongenre.devstackhq.com/chat/)")
 
 # Features in a nice card
 with st.container():
@@ -142,41 +106,36 @@ with col3:
     st.markdown("**Stack:** FastAPI • Google Cloud API • Blogger Automation")
     st.markdown("**Use Case:** Automated content creation and publishing")
     
-    # Blog button
-    st.markdown(f"""
-    <a href="https://advisiongenre.devstackhq.com" target="_blank">
-        <button style="background: linear-gradient(45deg, #667eea, #764ba2); 
-                      color: white; 
-                      border: none; 
-                      padding: 10px 20px; 
-                      border-radius: 8px; 
-                      cursor: pointer; 
-                      font-weight: bold;">
-            📰 Read Our Blogs
-        </button>
-    </a>
-    """, unsafe_allow_html=True)
+    # Blog button - Simple markdown link
+    st.markdown("[📰 Read Our Blogs](https://advisiongenre.devstackhq.com)")
 
 with col4:
-    st.markdown("### 🤖 SearchPulse Chatbot")
+    st.markdown("### 💬 SearchPulse Chatbot") 
     st.markdown("**Status:** 💬 Live on Linode")
     st.markdown("**Stack:** FastAPI • LLM Integration • Gradio UI")
     st.markdown("**Use Case:** Conversational insights and search assistant")
     
-    # Chatbot button
-    st.markdown(f"""
-    <a href="https://advisiongenre.devstackhq.com/chat/" target="_blank">
-        <button style="background: linear-gradient(45deg, #FF6B35, #FF8E53); 
-                      color: white; 
-                      border: none; 
-                      padding: 10px 20px; 
-                      border-radius: 8px; 
-                      cursor: pointer; 
-                      font-weight: bold;">
-            🤖 Launch SearchPulse Chatbot
-        </button>
-    </a>
-    """, unsafe_allow_html=True)
+    # Chatbot button - Simple markdown link
+    st.markdown("[🤖 Launch SearchPulse Chatbot](https://advisiongenre.devstackhq.com/chat/)")
+
+# Alternative: Using Streamlit buttons with JavaScript (more reliable)
+st.markdown("---")
+st.markdown("### 🚀 Quick Access Links")
+
+# Create columns for buttons
+btn_col1, btn_col2, btn_col3 = st.columns(3)
+
+with btn_col1:
+    if st.button("🧠 Launch Reposcope", use_container_width=True):
+        st.markdown(f'<meta http-equiv="refresh" content="0; url={reposcope_url}">', unsafe_allow_html=True)
+
+with btn_col2:
+    if st.button("🤖 Try Chatbot Demo", use_container_width=True):
+        st.markdown('<meta http-equiv="refresh" content="0; url=https://advisiongenre.devstackhq.com/chat/">', unsafe_allow_html=True)
+
+with btn_col3:
+    if st.button("📰 Read Our Blogs", use_container_width=True):
+        st.markdown('<meta http-equiv="refresh" content="0; url=https://advisiongenre.devstackhq.com">', unsafe_allow_html=True)
 
 # Additional call-to-action
 st.markdown("---")
@@ -184,11 +143,7 @@ st.markdown("""
 <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
     <h3>🚀 Ready to Get Started?</h3>
     <p>Join hundreds of developers using our AI-powered tools to boost their productivity!</p>
-    <a href="https://advisiongenre.devstackhq.com/chat/" target="_blank">
-        <button style="background: white; color: #667eea; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px;">
-            Start Free Trial Now
-        </button>
-    </a>
+    <p><a href="https://advisiongenre.devstackhq.com/chat/" style="color: white; text-decoration: underline; font-weight: bold;">Start Free Trial Now</a></p>
 </div>
 """, unsafe_allow_html=True)
 
