@@ -1,4 +1,2 @@
-streamlit
-requests
-pandas
-numpy
+# Static HTML website - no Python dependencies needed
+# This file is kept for compatibility with Render
