@@ -24,8 +24,8 @@ with col1:
     *For data protection and privacy concerns*
     
     #### 📞 Phone Support
-    **Customer Support:** +91-9876543210  
-    **Business Inquiries:** +91-9876543211
+    **Customer Support:** +91-9873171180 
+    **Business Inquiries:** +91-9540342222
     
     #### 🏢 Office Address
     DevStackHQ Solutions  
