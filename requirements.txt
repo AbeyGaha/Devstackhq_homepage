@@ -1,2 +1,2 @@
-# Static HTML website - no Python dependencies needed
+# Static HTML site served via Node.js
 # This file is kept for compatibility with Render
