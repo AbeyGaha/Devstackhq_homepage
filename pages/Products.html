@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevStackHQ Products - AI Tools Suite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #FF6B35;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+        
+        .main-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #FFD700, #FF6B35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .main-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Server Status */
+        .server-status {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem auto;
+            max-width: 800px;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            text-align: center;
+        }
+        
+        .status-online {
+            border-left: 5px solid #28a745;
+        }
+        
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .product-card h2 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .product-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Features List */
+        .features {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        
+        .features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features li:last-child {
+            border-bottom: none;
+        }
+        
+        .features li::before {
+            content: "🎯 ";
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--accent), #FF8E53);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn:hover {
+            background: linear-gradient(45deg, #E55A2B, #FF7B42);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(45deg, #5a6fd8, #6a4190);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* URL Box */
+        .url-box {
+            background: var(--light);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            border: 2px dashed #dee2e6;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            word-break: break-all;
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+        
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+            gap: 0.5rem;
+        }
+        
+        .status-live {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin: 1.5rem 0;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Quick Access */
+        .quick-access {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .access-item {
+            text-align: center;
+            padding: 1.5rem;
+            border: 2px solid var(--light);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .access-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: white;
+            margin-top: 4rem;
+        }
+        
+        .footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-card {
+                padding: 2rem;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Header -->
+        <div class="main-header">
+            <h1>🚀 DevStackHQ Products</h1>
+            <p>Discover powerful AI tools and developer solutions that boost productivity and creativity</p>
+        </div>
+
+        <!-- Server Status -->
+        <div class="server-status status-online">
+            <h3>🟢 ALL SYSTEMS OPERATIONAL</h3>
+            <p>SearchPulse Chatbot: Online | AdVisionGenre: Live | Reposcope: Running</p>
+            <p><small>Powered by Groq LPU • Optimized for Performance</small></p>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid">
+            <!-- SearchPulse Chatbot -->
+            <div class="product-card">
+                <div class="product-icon">🤖</div>
+                <h2>SearchPulse Chatbot</h2>
+                <p><strong>AI-Powered Conversational Assistant with Creative Tools</strong></p>
+                <p>Experience next-generation AI conversations with integrated creative tools for content generation, file processing, and real-time insights.</p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Groq LPU</span>
+                    <span class="tech-tag">Gradio UI</span>
+                    <span class="tech-tag">Python</span>
+                </div>
+                
+                <div class="status-badge status-live">
+                    <span>✅</span>
+                    <span>LIVE ON LINODE</span>
+                </div>
+                
+                <div class="url-box">https://advisiongenre.devstackhq.com/chat/</div>
+                
+                <a href="https://advisiongenre.devstackhq.com/chat/" target="_blank" class="btn">
+                    <span>🚀</span>
+                    <span>Try Free Demo</span>
+                </a>
+                
+                <div class="features">
+                    <h4>🎯 Key Features:</h4>
+                    <ul>
+                        <li>4 messages conversation memory</li>
+                        <li>File upload (PDF, images, text)</li>
+                        <li>Creative tools integration</li>
+                        <li>Real-time market research</li>
+                        <li>Download generated content</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- AdVisionGenre -->
+            <div class="product-card">
+                <div class="product-icon">📰</div>
+                <h2>AdVisionGenre</h2>
+                <p><strong>AI Content Creation & Automated Publishing</strong></p>
+                <p>Automate your content workflow with AI-powered blog creation, ad design, and multi-platform publishing solutions.</p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">WordPress API</span>
+                    <span class="tech-tag">Google Cloud</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Groq LLM</span>
+                </div>
+                
+                <div class="status-badge status-live">
+                    <span>✅</span>
+                    <span>LIVE ON LINODE</span>
+                </div>
+                
+                <div class="url-box">https://advisiongenre.devstackhq.com</div>
+                
+                <a href="https://advisiongenre.devstackhq.com" target="_blank" class="btn btn-secondary">
+                    <span>📖</span>
+                    <span>Read Our Blogs</span>
+                </a>
+                
+                <div class="features">
+                    <h4>🎯 Key Features:</h4>
+                    <ul>
+                        <li>AI-powered content generation</li>
+                        <li>WordPress auto-publishing</li>
+                        <li>SEO optimization tools</li>
+                        <li>Social media integration</li>
+                        <li>Multi-platform distribution</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Reposcope -->
+            <div class="product-card">
+                <div class="product-icon">🧠</div>
+                <h2>Reposcope</h2>
+                <p><strong>Cloud Repository Intelligence Platform</strong></p>
+                <p>Streamlit-based platform for repository analysis, cloud deployment automation, and data visualization workflows.</p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Cloud Deployment</span>
+                    <span class="tech-tag">Data Viz</span>
+                </div>
+                
+                <div class="status-badge status-live">
+                    <span>✅</span>
+                    <span>LIVE ON STREAMLIT</span>
+                </div>
+                
+                <div class="url-box">https://reposcope.streamlit.app</div>
+                
+                <a href="https://reposcope.streamlit.app" target="_blank" class="btn">
+                    <span>🌐</span>
+                    <span>Launch Platform</span>
+                </a>
+                
+                <div class="features">
+                    <h4>🎯 Key Features:</h4>
+                    <ul>
+                        <li>Repository analysis & insights</li>
+                        <li>Cloud deployment automation</li>
+                        <li>Model backtesting framework</li>
+                        <li>Real-time dashboards</li>
+                        <li>Multi-cloud support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Access Section -->
+        <div class="quick-access">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--dark);">🔗 Quick Access Links</h2>
+            
+            <div class="access-grid">
+                <div class="access-item">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤖</div>
+                    <h3>SearchPulse Chatbot</h3>
+                    <p>AI Assistant with Creative Tools</p>
+                    <div class="url-box" style="margin: 1rem 0; font-size: 0.9rem;">advisiongenre.devstackhq.com/chat/</div>
+                    <a href="https://advisiongenre.devstackhq.com/chat/" target="_blank" class="btn" style="padding: 12px 25px;">
+                        Open Chatbot
+                    </a>
+                </div>
+                
+                <div class="access-item">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📰</div>
+                    <h3>AdVisionGenre</h3>
+                    <p>Content Creation Platform</p>
+                    <div class="url-box" style="margin: 1rem 0; font-size: 0.9rem;">advisiongenre.devstackhq.com</div>
+                    <a href="https://advisiongenre.devstackhq.com" target="_blank" class="btn btn-secondary" style="padding: 12px 25px;">
+                        Open Blogs
+                    </a>
+                </div>
+                
+                <div class="access-item">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🧠</div>
+                    <h3>Reposcope</h3>
+                    <p>Repository Intelligence</p>
+                    <div class="url-box" style="margin: 1rem 0; font-size: 0.9rem;">reposcope.streamlit.app</div>
+                    <a href="https://reposcope.streamlit.app" target="_blank" class="btn" style="padding: 12px 25px;">
+                        Open Platform
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3 style="margin-bottom: 1rem;">🌐 DevStackHQ Ecosystem</h3>
+            <p>Empowering developers with AI-driven tools and solutions</p>
+            <p style="margin-top: 2rem; opacity: 0.7;">
+                &copy; 2024 DevStackHQ Labs. All systems operational. 
+                <br>Powered by Groq LPU Inference Engine.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all product cards
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            
+            // Add click tracking
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productName = this.closest('.product-card')?.querySelector('h2')?.textContent || 'Unknown Product';
+                    console.log(`Product accessed: ${productName}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
