@@ -31,7 +31,7 @@ st.markdown("""
 <p>You can cancel your subscription anytime. The cancellation will be effective at the end of the current billing cycle.</p>
 <ul>
 <li><strong>Monthly:</strong> Cancel anytime, continues until end of billing</li>
-<li><strong>Annual:</strong> Cancel within 30 days for pro-rated refund</li>
+<li><strong>Annual:</strong> Cancel within 7 days for pro-rated refund</li>
 <li><strong>Enterprise:</strong> Custom cancellation terms as per agreement</li>
 </ul>
 
