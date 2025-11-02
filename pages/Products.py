@@ -32,7 +32,18 @@ body { background: linear-gradient(135deg, var(--primary), var(--secondary)); co
 st.markdown(CSS, unsafe_allow_html=True)
 
 # Header
-st.markdown('<div class="main-header"><h1>🚀 DevStackHQ Products</h1><p>Discover powerful AI tools and developer solutions</p></div>', unsafe_allow_html=True)
+st.markdown("""
+<div class="main-header">
+  <h1 style="display:flex;justify-content:center;align-items:center;gap:.6rem;flex-wrap:wrap;">
+    🚀 DevStackHQ Products 
+    <span style="font-size:1rem; background:#d4edda; color:#155724; padding:.3rem .8rem; border-radius:20px;">
+      🟢 All Systems Operational
+    </span>
+  </h1>
+  <p>Discover powerful AI tools and developer solutions</p>
+</div>
+""", unsafe_allow_html=True)
+
 
 # Server status block
 st.markdown('<div style="max-width:900px;margin:auto"><div style="background:rgba(255,255,255,0.08);padding:1rem;border-radius:12px;color:white;text-align:center"> <h3 style="margin:.25rem 0">🟢 ALL SYSTEMS OPERATIONAL</h3><p style="margin:.25rem 0">SearchPulse Chatbot: Online | AdVisionGenre: Live | Reposcope: Running</p><small>Powered by Groq LPU • Optimized for Performance</small></div></div>', unsafe_allow_html=True)
