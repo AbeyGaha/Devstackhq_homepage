@@ -1,19 +1,39 @@
 import streamlit as st
+import smtplib
+from email.mime.text import MIMEText
 
+# -------- Email Sender Function --------
+def send_email(name, email, subject, message):
+    config = st.secrets["email"]
+    contact = st.secrets["contact_form"]
+
+    msg = MIMEText(
+        f"New Contact Form Submission\n\n"
+        f"Name: {name}\n"
+        f"Email: {email}\n"
+        f"Subject: {subject}\n\n"
+        f"Message:\n{message}"
+    )
+    msg["Subject"] = f"📩 New Message from {name}: {subject}"
+    msg["From"] = config["sender"]
+    msg["To"] = contact["recipient"]
+
+    with smtplib.SMTP(config["smtp_server"], config["smtp_port"]) as server:
+        if config.get("use_tls", True):
+            server.starttls()
+        server.login(config["sender"], config["password"])
+        server.send_message(msg)
+
+# -------- Streamlit Page --------
 def contact_us_page():
     st.set_page_config(page_title="Contact Us - DevStackHQ", layout="wide")
+
     st.markdown("""
     <style>
-    * {
-        margin: 0; padding: 0; box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     :root {
-        --primary: #667eea;
-        --secondary: #764ba2;
-        --accent: #FF4B4B;
-        --light: #f8f9fa;
-        --dark: #343a40;
+        --primary: #667eea; --secondary: #764ba2; --accent: #FF4B4B;
+        --light: #f8f9fa; --dark: #343a40;
     }
     body { background-color: #f5f5f5; color: #333; line-height: 1.6; }
     .main-header {
@@ -26,14 +46,10 @@ def contact_us_page():
         background: white; padding: 2rem; border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 2rem;
     }
-    .section-title {
-        color: var(--dark); margin-bottom: 1.5rem;
-        border-left: 4px solid var(--primary); padding-left: 1rem;
-    }
-    .contact-item {
-        margin-bottom: 1rem; padding: 1rem;
-        background: var(--light); border-radius: 8px;
-    }
+    .section-title { color: var(--dark); margin-bottom: 1.5rem;
+        border-left: 4px solid var(--primary); padding-left: 1rem; }
+    .contact-item { margin-bottom: 1rem; padding: 1rem;
+        background: var(--light); border-radius: 8px; }
     .submit-btn {
         background: var(--accent); color: white; border: none;
         padding: 1rem 2rem; border-radius: 5px; cursor: pointer;
@@ -69,7 +85,11 @@ def contact_us_page():
 
             if submitted:
                 if name and email and subject and message:
-                    st.success("✅ Thank you! Your message has been sent successfully. We'll respond within 24 hours.")
+                    try:
+                        send_email(name, email, subject, message)
+                        st.success("✅ Thank you! Your message has been sent successfully. We'll respond within 24 hours.")
+                    except Exception as e:
+                        st.error(f"❌ Failed to send message: {e}")
                 else:
                     st.error("❌ Please fill all required fields.")
 
@@ -90,3 +110,7 @@ def contact_us_page():
     - **General Questions:** Within 24 hours  
     - **Privacy Concerns:** Within 48 hours
     """)
+
+# Run if standalone
+if __name__ == "__main__":
+    contact_us_page()
