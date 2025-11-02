@@ -1,5 +1,6 @@
 # app.py
 import streamlit as st
+from utils import config
 from utils.auth import require_login, login_ui, logout
 import pandas as pd
 import numpy as np
@@ -148,4 +149,5 @@ else:
         render_products()
     elif nav == "Contact":
         render_contact()
+
 
