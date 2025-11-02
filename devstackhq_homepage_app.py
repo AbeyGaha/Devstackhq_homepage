@@ -1,6 +1,6 @@
 # app.py
 import streamlit as st
-from auth import require_login, login_ui, logout
+from utils.auth import require_login, login_ui, logout
 import pandas as pd
 import numpy as np
 from pathlib import Path
@@ -148,3 +148,4 @@ else:
         render_products()
     elif nav == "Contact":
         render_contact()
+
