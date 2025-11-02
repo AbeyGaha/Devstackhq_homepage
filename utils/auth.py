@@ -1,7 +1,5 @@
-# auth.py
 import streamlit as st
 
-# NOTE: This is a simple demo auth. Replace with DB / OAuth in production.
 DEMO_USER = {"email": "admin@devstackhq.com", "password": "devstack123"}
 
 def login_ui():
