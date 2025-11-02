@@ -1,15 +1,12 @@
 services:
   - type: web
-    name: devstackhq
-    env: static
-    plan: free
-    buildCommand: ""
-    startCommand: ""
-    staticPublishPath: ./
-    headers:
-      - path: /*
-        name: X-Frame-Options
-        value: DENY
-      - path: /*
-        name: X-Content-Type-Options
-        value: nosniff
+    name: devstackhq-streamlit
+    env: python
+    plan: free # change to starter / standard as needed
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      # add any secrets as envVars via Render dashboard instead of in repo
