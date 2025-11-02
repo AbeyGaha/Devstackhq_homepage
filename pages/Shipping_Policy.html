@@ -1,257 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping Policy - DevStackHQ</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary: #667eea;
-            --secondary: #764ba2;
-            --accent: #FF4B4B;
-            --light: #f8f9fa;
-            --dark: #343a40;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        .main-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .main-header h1 {
-            margin: 0;
-            font-size: 36px;
-        }
-        
-        /* Navigation */
-        .navbar {
-            text-align: center;
-            padding: 15px;
-            background-color: var(--light);
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .navbar a {
-            margin: 0 20px;
-            text-decoration: none;
-            font-weight: bold;
-            color: var(--dark);
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-        
-        .navbar a:hover {
-            color: var(--primary);
-        }
-        
-        /* Policy Content */
-        .policy-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .policy-section {
-            margin-bottom: 2.5rem;
-        }
-        
-        .policy-section h2 {
-            color: var(--dark);
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--primary);
-            padding-left: 1rem;
-        }
-        
-        .policy-section h3 {
-            color: var(--dark);
-            margin: 1.5rem 0 0.5rem 0;
-        }
-        
-        .policy-section p {
-            margin-bottom: 1rem;
-        }
-        
-        .policy-section ul {
-            margin-left: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .policy-section li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .delivery-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        
-        .delivery-item {
-            background: var(--light);
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            color: #666;
-            padding: 20px;
-            margin-top: 3rem;
-            border-top: 1px solid #dee2e6;
-        }
-        
-        .footer-links {
-            margin: 15px 0;
-        }
-        
-        .footer-links a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #666;
-            font-size: 14px;
-        }
-        
-        @media (max-width: 768px) {
-            .navbar a {
-                display: block;
-                margin: 10px 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <div class="main-header">
-            <h1>🚚 Shipping Policy</h1>
-            <p>Digital Products Delivery Information</p>
-        </div>
+import streamlit as st
 
-        <!-- Navigation -->
-        <nav class="navbar">
-            <a href="index.html">🏠 Home</a>
-            <a href="about.html">ℹ️ About</a>
-            <a href="products.html">🛍️ Products</a>
-            <a href="contact.html">📞 Contact</a>
-        </nav>
+st.set_page_config(page_title="Shipping Policy | DevStackHQ", page_icon="🚚", layout="wide")
 
-        <!-- Policy Content -->
-        <div class="policy-content">
-            <div class="policy-section">
-                <h2>📦 Delivery of Digital Products</h2>
-                <p>Since we deal primarily with digital products and software services, our "shipping" process is instant and automated.</p>
-            </div>
+# CSS
+st.markdown("""
+<style>
+    * {font-family: 'Segoe UI', sans-serif;}
+    .main-header {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white; padding: 25px; border-radius: 10px; text-align: center;
+    }
+    .policy-content {
+        background: white; padding: 2rem; border-radius: 10px;
+        margin: 2rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h2 {color: #333; border-left: 4px solid #667eea; padding-left: 10px;}
+    .footer {text-align: center; color: #666; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem;}
+</style>
+""", unsafe_allow_html=True)
 
-            <div class="policy-section">
-                <h2>🚀 Instant Delivery Process</h2>
-                <ol>
-                    <li><strong>Immediate Access:</strong> After successful payment, you'll receive instant access to your digital products</li>
-                    <li><strong>Email Confirmation:</strong> Download links and access credentials are sent to your registered email</li>
-                    <li><strong>Dashboard Access:</strong> Products are available in your user dashboard immediately</li>
-                </ol>
-            </div>
+# Header
+st.markdown("""
+<div class="main-header">
+    <h1>🚚 Shipping Policy</h1>
+    <p>Digital Products Delivery Information</p>
+</div>
+""", unsafe_allow_html=True)
 
-            <div class="policy-section">
-                <h2>📧 Delivery Methods</h2>
-                <div class="delivery-methods">
-                    <div class="delivery-item">
-                        <h3>Software Downloads</h3>
-                        <p>Direct download links</p>
-                    </div>
-                    <div class="delivery-item">
-                        <h3>SaaS Access</h3>
-                        <p>Account credentials and login instructions</p>
-                    </div>
-                    <div class="delivery-item">
-                        <h3>API Keys</h3>
-                        <p>Generated and delivered instantly</p>
-                    </div>
-                    <div class="delivery-item">
-                        <h3>Documentation</h3>
-                        <p>Comprehensive guides and documentation</p>
-                    </div>
-                </div>
-            </div>
+# Content
+st.markdown("""
+<div class="policy-content">
+<h2>📦 Delivery of Digital Products</h2>
+<p>Since we deal primarily with digital products and software services, our "shipping" process is instant and automated.</p>
 
-            <div class="policy-section">
-                <h2>⏰ Delivery Timeframes</h2>
-                <ul>
-                    <li><strong>Digital Products:</strong> Instant delivery (0-5 minutes)</li>
-                    <li><strong>Custom Solutions:</strong> 24-48 hours (depending on complexity)</li>
-                    <li><strong>Enterprise Services:</strong> Within 2 business days</li>
-                </ul>
-            </div>
+<h2>🚀 Instant Delivery Process</h2>
+<ol>
+<li><strong>Immediate Access:</strong> After successful payment, you'll receive instant access to your digital products</li>
+<li><strong>Email Confirmation:</strong> Download links and access credentials are sent to your registered email</li>
+<li><strong>Dashboard Access:</strong> Products are available in your user dashboard immediately</li>
+</ol>
 
-            <div class="policy-section">
-                <h2>🌐 Global Availability</h2>
-                <p>Our digital products are available worldwide with no geographical restrictions.</p>
-            </div>
+<h2>📧 Delivery Methods</h2>
+<ul>
+<li>Software Downloads – Direct download links</li>
+<li>SaaS Access – Account credentials and login instructions</li>
+<li>API Keys – Generated and delivered instantly</li>
+<li>Documentation – Comprehensive guides and documentation</li>
+</ul>
 
-            <div class="policy-section">
-                <h2>🔧 Service Activation</h2>
-                <p>For subscription-based services:</p>
-                <ul>
-                    <li>Activation occurs immediately after payment verification</li>
-                    <li>You'll receive welcome email with setup instructions</li>
-                    <li>Technical support is available to assist with onboarding</li>
-                </ul>
-            </div>
+<h2>⏰ Delivery Timeframes</h2>
+<ul>
+<li><strong>Digital Products:</strong> Instant delivery (0-5 minutes)</li>
+<li><strong>Custom Solutions:</strong> 24-48 hours (depending on complexity)</li>
+<li><strong>Enterprise Services:</strong> Within 2 business days</li>
+</ul>
 
-            <div class="policy-section">
-                <h2>📞 Need Help?</h2>
-                <p>If you haven't received your product within the specified timeframe:</p>
-                <ol>
-                    <li>Check your spam folder</li>
-                    <li>Verify your email address in account settings</li>
-                    <li>Contact our support team at support@devstackhq.com</li>
-                </ol>
-            </div>
+<h2>🌐 Global Availability</h2>
+<p>Our digital products are available worldwide with no geographical restrictions.</p>
 
-            <div class="policy-section">
-                <p><em>Last updated: October 2025</em></p>
-            </div>
-        </div>
+<h2>🔧 Service Activation</h2>
+<p>Activation occurs immediately after payment verification. You'll receive a welcome email with setup instructions.</p>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p style="font-size: 16px; font-weight: bold;">© 2025 DevStackHQ. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="shipping-policy.html">Shipping Policy</a> | 
-                <a href="terms-conditions.html">Terms & Conditions</a> | 
-                <a href="cancellations-refund.html">Cancellations & Refund</a> | 
-                <a href="contact.html">Contact Us</a>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+<h2>📞 Need Help?</h2>
+<p>If you haven't received your product within the specified timeframe:</p>
+<ol>
+<li>Check your spam folder</li>
+<li>Verify your email address in account settings</li>
+<li>Contact our support team at <strong>support@devstackhq.com</strong></li>
+</ol>
+
+<p><em>Last updated: October 2025</em></p>
+</div>
+
+<div class="footer">
+<p>© 2025 DevStackHQ. All rights reserved.</p>
+</div>
+""", unsafe_allow_html=True)
